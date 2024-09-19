@@ -29,7 +29,7 @@ O interpretador é composto por três principais componentes:
 # Diagrama do Parser
 
 ```mermaid
-    graph TD
+graph TD
     A[Início do Parse] --> B[Chama expr]
     B --> C[Chama term]
     C --> D[Chama factor]
@@ -37,12 +37,12 @@ O interpretador é composto por três principais componentes:
     D --> E{Token é número?}
     E --> F[Retorna nó numérico]
     E --> G{Token é '#40;'?}
-    
+
     G --> H[Consome '#40;']
-    H --> I[Chama expr para subexpressão]
-    I --> J[Consome '#41;']
-    J --> K[Retorna nó da subexpressão]
-    
+    H -- Chama expr para subexpressão ---
+    J[Consome '#41;']
+    J -- Retorna nó da subexpressão --- return
+
     G --> L[Erro de Sintaxe]
 
     C --> M{Token é '*' ou '/'}
@@ -56,7 +56,7 @@ O interpretador é composto por três principais componentes:
     R --> S[Chama term novamente]
     S --> B
     Q --> T[Retorna nó expr]
-    
+
     T --> Z[Fim do Parse]
 ```
 
